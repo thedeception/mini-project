@@ -22,7 +22,7 @@ export default function FullRecipe() {
       <header className="container m-auto pb-8">
         <Navbar from={null} to={null} totalRecipes={null} />
       </header>
-      <div className="container flex flex-col    m-auto text-center md:text-left text-zinc-950  px-24 p-4 ">
+      <div className="container flex flex-col items-start   m-auto text-left  text-zinc-950  md:px-24 p-4 ">
         <img
           src={image}
           alt={label}
@@ -41,7 +41,7 @@ export default function FullRecipe() {
           <p className="text-lg text-neutral-focus mb-1 font-semibold">
             Ingredients
           </p>
-          <ul className="list-disc text-md pl-5">
+          <ul className="list-disc  text-md pl-5">
             {ingredients.map((ingredient, index) => (
               <li key={index}>{ingredient.text}</li>
             ))}
