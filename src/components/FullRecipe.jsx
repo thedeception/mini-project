@@ -1,17 +1,72 @@
-import React from 'react'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-export default function FullRecipe({selectedRecipe}) {
-    console.log(selectedRecipe)
-    return (
-        <>
-            <div className="card w-96 bg-primary-content text-neutral-focus shadow-xl " style={{ maxWidth: '300px' }}>
-                {/* <figure ><img src={image} alt="recipe" /></figure> */}
-                <div className="card-body justify-between text-left">
-                    jhjdhshjs
+import React from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
+export default function FullRecipe() {
+  const location = useLocation();
+  const data = location.state;
+  const {
+    label,
+    image,
+    ingredients,
+    totalTime,
+    cuisineType,
+    dietLabels,
+    healthLabels,
+    url,
+  } = data;
 
-                </div>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <header className="container m-auto pb-8">
+        <Navbar from={null} to={null} totalRecipes={null} />
+      </header>
+      <div className="container flex flex-col    m-auto text-center md:text-left text-zinc-950  px-24 p-4 ">
+        <img
+          src={image}
+          alt={label}
+          className="mb-4  aspect-video w-full object-cover rounded-md"
+        />
+        <h2 className="text-2xl font-bold mb-4">{label}</h2>
+        <p className="mb-4">
+          <span className="font-semibold">Total Time:</span> {totalTime} minutes
+        </p>
+
+        <p className="mb-4">
+          <span className="font-semibold">Cuisine Type:</span>{" "}
+          {cuisineType.join(", ")}
+        </p>
+        <div className="mb-4">
+          <p className="text-lg text-neutral-focus mb-1 font-semibold">
+            Ingredients
+          </p>
+          <ul className="list-disc text-md pl-5">
+            {ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient.text}</li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="mb-4">
+          <span className="font-semibold">Diet Labels:</span>{" "}
+          {dietLabels.join(", ")}
+        </p>
+
+        <p className="mb-4">
+          <span className="font-semibold">Health Labels:</span>{" "}
+          {healthLabels.join(", ")}
+        </p>
+
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          View Recipe
+        </a>
+      </div>
+    </>
+  );
 }
